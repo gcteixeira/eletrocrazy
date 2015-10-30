@@ -9,11 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
-import br.univel.model.Categoria;
 
 @Entity
-@Table(name = "produto")
-public class Produto implements Serializable
+@Table(name = "categoria")
+public class Categoria implements Serializable
 {
 
    @Id
@@ -24,20 +23,11 @@ public class Produto implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column(name = "idproduto", nullable = false)
-   private float Idproduto;
+   @Column(name = "idcategoria", nullable = false)
+   private int IdCategoria;
 
    @Column(name = "descricao")
    private String Descricao;
-
-   @Column(name = "quantidadeproduto")
-   private double QuantidadeProduto;
-
-   @Column(name = "produtovalor")
-   private double ProdutoValor;
-
-   @Column(name = "idcategoria")
-   private Categoria idcategoria;
 
    public Long getId()
    {
@@ -66,11 +56,11 @@ public class Produto implements Serializable
       {
          return true;
       }
-      if (!(obj instanceof Produto))
+      if (!(obj instanceof Categoria))
       {
          return false;
       }
-      Produto other = (Produto) obj;
+      Categoria other = (Categoria) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -90,14 +80,14 @@ public class Produto implements Serializable
       return result;
    }
 
-   public float getIdproduto()
+   public int getIdCategoria()
    {
-      return Idproduto;
+      return IdCategoria;
    }
 
-   public void setIdproduto(float Idproduto)
+   public void setIdCategoria(int IdCategoria)
    {
-      this.Idproduto = Idproduto;
+      this.IdCategoria = IdCategoria;
    }
 
    public String getDescricao()
@@ -110,45 +100,13 @@ public class Produto implements Serializable
       this.Descricao = Descricao;
    }
 
-   public double getQuantidadeProduto()
-   {
-      return QuantidadeProduto;
-   }
-
-   public void setQuantidadeProduto(double QuantidadeProduto)
-   {
-      this.QuantidadeProduto = QuantidadeProduto;
-   }
-
-   public double getProdutoValor()
-   {
-      return ProdutoValor;
-   }
-
-   public void setProdutoValor(double ProdutoValor)
-   {
-      this.ProdutoValor = ProdutoValor;
-   }
-
-   public Categoria getIdcategoria()
-   {
-      return idcategoria;
-   }
-
-   public void setIdcategoria(Categoria idcategoria)
-   {
-      this.idcategoria = idcategoria;
-   }
-
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
-      result += "Idproduto: " + Idproduto;
+      result += "IdCategoria: " + IdCategoria;
       if (Descricao != null && !Descricao.trim().isEmpty())
          result += ", Descricao: " + Descricao;
-      result += ", QuantidadeProduto: " + QuantidadeProduto;
-      result += ", ProdutoValor: " + ProdutoValor;
       return result;
    }
 }
