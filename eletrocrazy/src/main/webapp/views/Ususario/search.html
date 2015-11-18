@@ -1,0 +1,76 @@
+<div class="form-horizontal">
+    <h3>Create a new Ususario</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Ususarios/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Ususarios</h3>
+    <form id="UsusarioSearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="Idusuario" class="col-sm-2 control-label">Idusuario</label>
+        <div class="col-sm-10">
+            <input id="Idusuario" name="Idusuario" class="form-control" type="text" ng-model="search.Idusuario" placeholder="Enter the Ususario Idusuario"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+        <div class="col-sm-10">
+            <input id="usuario" name="usuario" class="form-control" type="text" ng-model="search.usuario" placeholder="Enter the Ususario Usuario"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Senha" class="col-sm-2 control-label">Senha</label>
+        <div class="col-sm-10">
+            <input id="Senha" name="Senha" class="form-control" type="text" ng-model="search.Senha" placeholder="Enter the Ususario Senha"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Idusuario</th>
+                    <th>Usuario</th>
+                    <th>Senha</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/Ususarios/edit/{{result.id}}">{{result.Idusuario}}</a></td>
+                    <td><a href="#/Ususarios/edit/{{result.id}}">{{result.usuario}}</a></td>
+                    <td><a href="#/Ususarios/edit/{{result.id}}">{{result.Senha}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

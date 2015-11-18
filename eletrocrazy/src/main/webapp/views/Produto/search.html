@@ -1,0 +1,94 @@
+<div class="form-horizontal">
+    <h3>Create a new Produto</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Produtos/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Produtos</h3>
+    <form id="ProdutoSearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="Idproduto" class="col-sm-2 control-label">Idproduto</label>
+        <div class="col-sm-10">
+            <input id="Idproduto" name="Idproduto" class="form-control" type="text" ng-model="search.Idproduto" placeholder="Enter the Produto Idproduto"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Descricao" class="col-sm-2 control-label">Descricao</label>
+        <div class="col-sm-10">
+            <input id="Descricao" name="Descricao" class="form-control" type="text" ng-model="search.Descricao" placeholder="Enter the Produto Descricao"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="QuantidadeProduto" class="col-sm-2 control-label">Quantidade Produto</label>
+        <div class="col-sm-10">
+            <input id="QuantidadeProduto" name="QuantidadeProduto" class="form-control" type="text" ng-model="search.QuantidadeProduto" placeholder="Enter the Produto Quantidade Produto"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ProdutoValor" class="col-sm-2 control-label">Produto Valor</label>
+        <div class="col-sm-10">
+            <input id="ProdutoValor" name="ProdutoValor" class="form-control" type="text" ng-model="search.ProdutoValor" placeholder="Enter the Produto Produto Valor"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="idcategoria" class="col-sm-2 control-label">Idcategoria</label>
+        <div class="col-sm-10">
+            <input id="idcategoria" name="idcategoria" class="form-control" type="text" ng-model="search.idcategoria" placeholder="Enter the Produto Idcategoria"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Idproduto</th>
+                    <th>Descricao</th>
+                    <th>Quantidade Produto</th>
+                    <th>Produto Valor</th>
+                    <th>Idcategoria</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/Produtos/edit/{{result.id}}">{{result.Idproduto}}</a></td>
+                    <td><a href="#/Produtos/edit/{{result.id}}">{{result.Descricao}}</a></td>
+                    <td><a href="#/Produtos/edit/{{result.id}}">{{result.QuantidadeProduto}}</a></td>
+                    <td><a href="#/Produtos/edit/{{result.id}}">{{result.ProdutoValor}}</a></td>
+                    <td><a href="#/Produtos/edit/{{result.id}}">{{result.idcategoria}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

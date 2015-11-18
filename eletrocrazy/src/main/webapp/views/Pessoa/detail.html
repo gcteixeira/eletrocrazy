@@ -1,0 +1,45 @@
+<header ng-switch on="$location.path().indexOf('/Pessoas/new') > -1">
+    <h3 ng-switch-when="true">Create a new Pessoa</h3>
+    <h3 ng-switch-when="false">View or edit Pessoa</h3>
+</header>
+<form id="PessoaForm" name="PessoaForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group" ng-class="{'has-error': PessoaForm.IdPessoa.$invalid}">
+        <label for="IdPessoa" class="col-sm-2 control-label">Id Pessoa</label>
+        <div id="IdPessoaControls" class="col-sm-10">
+            <input id="IdPessoa" name="IdPessoa" type="text" required class="form-control" ng-model="pessoa.IdPessoa" placeholder="Enter the Pessoa Id Pessoa"></input>
+            <span class="help-block error" ng-show="PessoaForm.IdPessoa.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PessoaForm.Nome.$invalid}">
+        <label for="Nome" class="col-sm-2 control-label">Nome</label>
+        <div id="NomeControls" class="col-sm-10">
+            <input id="Nome" name="Nome" type="text" class="form-control" ng-model="pessoa.Nome" placeholder="Enter the Pessoa Nome"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PessoaForm.Rg.$invalid}">
+        <label for="Rg" class="col-sm-2 control-label">Rg</label>
+        <div id="RgControls" class="col-sm-10">
+            <input id="Rg" name="Rg" type="text" class="form-control" ng-model="pessoa.Rg" placeholder="Enter the Pessoa Rg"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PessoaForm.Cpf.$invalid}">
+        <label for="Cpf" class="col-sm-2 control-label">Cpf</label>
+        <div id="CpfControls" class="col-sm-10">
+            <input id="Cpf" name="Cpf" type="text" class="form-control" ng-model="pessoa.Cpf" placeholder="Enter the Pessoa Cpf"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="savePessoa" name="savePessoa" class="btn btn-primary" ng-disabled="isClean() || PessoaForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deletePessoa" name="deletePessoa" class="btn btn-danger" ng-show="pessoa.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

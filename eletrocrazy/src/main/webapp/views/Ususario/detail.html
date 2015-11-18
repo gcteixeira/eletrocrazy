@@ -1,0 +1,39 @@
+<header ng-switch on="$location.path().indexOf('/Ususarios/new') > -1">
+    <h3 ng-switch-when="true">Create a new Ususario</h3>
+    <h3 ng-switch-when="false">View or edit Ususario</h3>
+</header>
+<form id="UsusarioForm" name="UsusarioForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group" ng-class="{'has-error': UsusarioForm.Idusuario.$invalid}">
+        <label for="Idusuario" class="col-sm-2 control-label">Idusuario</label>
+        <div id="IdusuarioControls" class="col-sm-10">
+            <input id="Idusuario" name="Idusuario" type="number" required class="form-control" ng-model="ususario.Idusuario" placeholder="Enter the Ususario Idusuario"></input>
+            <span class="help-block error" ng-show="UsusarioForm.Idusuario.$error.required">required</span> 
+            <span class="help-block error" ng-show="UsusarioForm.Idusuario.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': UsusarioForm.usuario.$invalid}">
+        <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+        <div id="usuarioControls" class="col-sm-10">
+            <input id="usuario" name="usuario" type="text" class="form-control" ng-model="ususario.usuario" placeholder="Enter the Ususario Usuario"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': UsusarioForm.Senha.$invalid}">
+        <label for="Senha" class="col-sm-2 control-label">Senha</label>
+        <div id="SenhaControls" class="col-sm-10">
+            <input id="Senha" name="Senha" type="text" class="form-control" ng-model="ususario.Senha" placeholder="Enter the Ususario Senha"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveUsusario" name="saveUsusario" class="btn btn-primary" ng-disabled="isClean() || UsusarioForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteUsusario" name="deleteUsusario" class="btn btn-danger" ng-show="ususario.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

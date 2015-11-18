@@ -1,0 +1,56 @@
+<header ng-switch on="$location.path().indexOf('/Carrinhos/new') > -1">
+    <h3 ng-switch-when="true">Create a new Carrinho</h3>
+    <h3 ng-switch-when="false">View or edit Carrinho</h3>
+</header>
+<form id="CarrinhoForm" name="CarrinhoForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group" ng-class="{'has-error': CarrinhoForm.Idcarrinho.$invalid}">
+        <label for="Idcarrinho" class="col-sm-2 control-label">Idcarrinho</label>
+        <div id="IdcarrinhoControls" class="col-sm-10">
+            <input id="Idcarrinho" name="Idcarrinho" type="number" required class="form-control" ng-model="carrinho.Idcarrinho" placeholder="Enter the Carrinho Idcarrinho"></input>
+            <span class="help-block error" ng-show="CarrinhoForm.Idcarrinho.$error.required">required</span> 
+            <span class="help-block error" ng-show="CarrinhoForm.Idcarrinho.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CarrinhoForm.Idpessoa.$invalid}">
+        <label for="Idpessoa" class="col-sm-2 control-label">Idpessoa</label>
+        <div id="IdpessoaControls" class="col-sm-10">
+            <input id="Idpessoa" name="Idpessoa" type="text" class="form-control" ng-model="carrinho.Idpessoa" placeholder="Enter the Carrinho Idpessoa"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CarrinhoForm.Idproduto.$invalid}">
+        <label for="Idproduto" class="col-sm-2 control-label">Idproduto</label>
+        <div id="IdprodutoControls" class="col-sm-10">
+            <input id="Idproduto" name="Idproduto" type="text" required class="form-control" ng-model="carrinho.Idproduto" placeholder="Enter the Carrinho Idproduto"></input>
+            <span class="help-block error" ng-show="CarrinhoForm.Idproduto.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CarrinhoForm.Preco.$invalid}">
+        <label for="Preco" class="col-sm-2 control-label">Preco</label>
+        <div id="PrecoControls" class="col-sm-10">
+            <input id="Preco" name="Preco" type="number" class="form-control" ng-model="carrinho.Preco" placeholder="Enter the Carrinho Preco"></input>
+            <span class="help-block error" ng-show="CarrinhoForm.Preco.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CarrinhoForm.Quantidade.$invalid}">
+        <label for="Quantidade" class="col-sm-2 control-label">Quantidade</label>
+        <div id="QuantidadeControls" class="col-sm-10">
+            <input id="Quantidade" name="Quantidade" type="number" class="form-control" ng-model="carrinho.Quantidade" placeholder="Enter the Carrinho Quantidade"></input>
+            <span class="help-block error" ng-show="CarrinhoForm.Quantidade.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCarrinho" name="saveCarrinho" class="btn btn-primary" ng-disabled="isClean() || CarrinhoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCarrinho" name="deleteCarrinho" class="btn btn-danger" ng-show="carrinho.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
