@@ -9,104 +9,90 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "categoria")
-public class Categoria implements Serializable
-{
+@XmlRootElement
+public class Categoria implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 
-   @Column(name = "idcategoria", nullable = false)
-   private int IdCategoria;
+	@Column(name = "idcategoria", nullable = false)
+	private int IdCategoria;
 
-   @Column(name = "descricao")
-   private String Descricao;
+	@Column(name = "descricao")
+	private String Descricao;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Categoria))
-      {
-         return false;
-      }
-      Categoria other = (Categoria) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Categoria)) {
+			return false;
+		}
+		Categoria other = (Categoria) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public int getIdCategoria()
-   {
-      return IdCategoria;
-   }
+	public int getIdCategoria() {
+		return IdCategoria;
+	}
 
-   public void setIdCategoria(int IdCategoria)
-   {
-      this.IdCategoria = IdCategoria;
-   }
+	public void setIdCategoria(int IdCategoria) {
+		this.IdCategoria = IdCategoria;
+	}
 
-   public String getDescricao()
-   {
-      return Descricao;
-   }
+	public String getDescricao() {
+		return Descricao;
+	}
 
-   public void setDescricao(String Descricao)
-   {
-      this.Descricao = Descricao;
-   }
+	public void setDescricao(String Descricao) {
+		this.Descricao = Descricao;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      result += "IdCategoria: " + IdCategoria;
-      if (Descricao != null && !Descricao.trim().isEmpty())
-         result += ", Descricao: " + Descricao;
-      return result;
-   }
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		result += "IdCategoria: " + IdCategoria;
+		if (Descricao != null && !Descricao.trim().isEmpty())
+			result += ", Descricao: " + Descricao;
+		return result;
+	}
 }
