@@ -14,7 +14,7 @@ import br.univel.model.Categoria;
 @Stateless
 public class CategoriaDao
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    public void create(Categoria entity)

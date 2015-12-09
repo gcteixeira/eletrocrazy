@@ -29,7 +29,7 @@ import br.univel.model.Fabricante;
 @Path("/fabricantes")
 public class FabricanteEndpoint
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    @POST

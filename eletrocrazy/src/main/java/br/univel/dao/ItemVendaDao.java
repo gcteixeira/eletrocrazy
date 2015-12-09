@@ -14,7 +14,7 @@ import br.univel.model.ItemVenda;
 @Stateless
 public class ItemVendaDao
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    public void create(ItemVenda entity)

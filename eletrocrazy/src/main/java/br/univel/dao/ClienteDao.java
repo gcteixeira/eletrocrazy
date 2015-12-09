@@ -14,7 +14,7 @@ import br.univel.model.Cliente;
 @Stateless
 public class ClienteDao
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    public void create(Cliente entity)

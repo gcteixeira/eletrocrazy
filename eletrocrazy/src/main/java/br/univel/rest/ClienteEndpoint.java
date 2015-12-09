@@ -31,7 +31,7 @@ import br.univel.model.Usuario;
 @Path("/clientes")
 public class ClienteEndpoint
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    @POST

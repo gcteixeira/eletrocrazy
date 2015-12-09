@@ -30,7 +30,7 @@ import br.univel.model.Venda;
 @Stateless
 @Path("/vendas")
 public class VendaEndpoint {
-	@PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+	@PersistenceContext(unitName = "eletrocrazy-persistence-unit")
 	private EntityManager em;
 
 	@POST

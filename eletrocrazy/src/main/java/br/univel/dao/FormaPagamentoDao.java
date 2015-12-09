@@ -14,7 +14,7 @@ import br.univel.model.FormaPagamento;
 @Stateless
 public class FormaPagamentoDao
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    public void create(FormaPagamento entity)

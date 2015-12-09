@@ -14,7 +14,7 @@ import br.univel.model.Fabricante;
 @Stateless
 public class FabricanteDao
 {
-   @PersistenceContext(unitName = "DeusSkateShop-persistence-unit")
+   @PersistenceContext(unitName = "eletrocrazy-persistence-unit")
    private EntityManager em;
 
    public void create(Fabricante entity)
