@@ -1,134 +1,178 @@
 package br.univel.model;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Table;
-import javax.persistence.Id;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
-import java.lang.Override;
-import br.univel.model.Categoria;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "produto")
 @XmlRootElement
-public class Produto implements Serializable {
+public class Produto implements Serializable,Entidade
+{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
-	@Version
-	@Column(name = "version")
-	private int version;
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 5720122895964402524L;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "id", updatable = false, nullable = false)
+   private Long id;
+   @Version
+   @Column(name = "version")
+   private int version;
 
-	@Column(name = "idproduto", nullable = false)
-	private float Idproduto;
+   @Column(nullable = false)
+   private String nome;
 
-	@Column(name = "descricao")
-	private String Descricao;
+   @Column(nullable = false)
+   private String descricao;
 
-	@Column(name = "quantidadeproduto")
-	private double QuantidadeProduto;
+   @Column
+   private Float  preco;
 
-	@Column(name = "produtovalor")
-	private double ProdutoValor;
+   @ManyToOne
+   private Categoria categoria;
 
-	@Column(name = "idcategoria")
-	private Categoria idcategoria;
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   private Fabricante fabricante;
 
-	public Long getId() {
-		return this.id;
-	}
+ 
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
+   @Column(nullable = false)
+   private Integer quantidade;
 
-	public int getVersion() {
-		return this.version;
-	}
+   public Long getId()
+   {
+      return this.id;
+   }
 
-	public void setVersion(final int version) {
-		this.version = version;
-	}
+   public void setId(final Long id)
+   {
+      this.id = id;
+   }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Produto)) {
-			return false;
-		}
-		Produto other = (Produto) obj;
-		if (id != null) {
-			if (!id.equals(other.id)) {
-				return false;
-			}
-		}
-		return true;
-	}
+   public int getVersion()
+   {
+      return this.version;
+   }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+   public void setVersion(final int version)
+   {
+      this.version = version;
+   }
 
-	public float getIdproduto() {
-		return Idproduto;
-	}
+   @Override
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+      {
+         return true;
+      }
+      if (!(obj instanceof Produto))
+      {
+         return false;
+      }
+      Produto other = (Produto) obj;
+      if (id != null)
+      {
+         if (!id.equals(other.id))
+         {
+            return false;
+         }
+      }
+      return true;
+   }
 
-	public void setIdproduto(float Idproduto) {
-		this.Idproduto = Idproduto;
-	}
+   @Override
+   public int hashCode()
+   {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id == null) ? 0 : id.hashCode());
+      return result;
+   }
 
-	public String getDescricao() {
-		return Descricao;
-	}
+   public String getNome()
+   {
+      return nome;
+   }
 
-	public void setDescricao(String Descricao) {
-		this.Descricao = Descricao;
-	}
+   public void setNome(String nome)
+   {
+      this.nome = nome;
+   }
 
-	public double getQuantidadeProduto() {
-		return QuantidadeProduto;
-	}
+   public String getDescricao()
+   {
+      return descricao;
+   }
 
-	public void setQuantidadeProduto(double QuantidadeProduto) {
-		this.QuantidadeProduto = QuantidadeProduto;
-	}
+   public void setDescricao(String descricao)
+   {
+      this.descricao = descricao;
+   }
 
-	public double getProdutoValor() {
-		return ProdutoValor;
-	}
+   public Float  getPreco()
+   {
+      return preco;
+   }
 
-	public void setProdutoValor(double ProdutoValor) {
-		this.ProdutoValor = ProdutoValor;
-	}
+   public void setPreco(Float  preco)
+   {
+      this.preco = preco;
+   }
 
-	public Categoria getIdcategoria() {
-		return idcategoria;
-	}
+   public Categoria getCategoria()
+   {
+      return categoria;
+   }
 
-	public void setIdcategoria(Categoria idcategoria) {
-		this.idcategoria = idcategoria;
-	}
+   public void setCategoria(Categoria categoria)
+   {
+      this.categoria = categoria;
+   }
 
-	@Override
-	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		result += "Idproduto: " + Idproduto;
-		if (Descricao != null && !Descricao.trim().isEmpty())
-			result += ", Descricao: " + Descricao;
-		result += ", QuantidadeProduto: " + QuantidadeProduto;
-		result += ", ProdutoValor: " + ProdutoValor;
-		return result;
-	}
+   public Fabricante getFabricante()
+   {
+      return fabricante;
+   }
+
+   public void setFabricante(Fabricante fabricante)
+   {
+      this.fabricante = fabricante;
+   }
+
+   public Integer getQuantidade()
+   {
+      return quantidade;
+   }
+
+   public void setQuantidade(Integer quantidade)
+   {
+      this.quantidade = quantidade;
+   }
+
+
+   @Override
+   public String toString()
+   {
+      String result = getClass().getSimpleName() + " ";
+      if (nome != null && !nome.trim().isEmpty())
+         result += "nome: " + nome;
+      if (descricao != null && !descricao.trim().isEmpty())
+         result += ", descricao: " + descricao;
+      if (quantidade != null)
+         result += ", quantidade: " + quantidade;
+      return result;
+   }
 }

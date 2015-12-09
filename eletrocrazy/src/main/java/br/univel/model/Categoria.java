@@ -1,38 +1,50 @@
 package br.univel.model;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
-import javax.persistence.Table;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
+
 import java.lang.Override;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "categoria")
 @XmlRootElement
-public class Categoria implements Serializable {
+public class Categoria implements Serializable,Entidade
+{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
-	@Version
-	@Column(name = "version")
-	private int version;
+   /**
+    * 
+    */
+   private static final long serialVersionUID = -5839986112021519173L;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "id", updatable = false, nullable = false)
+   private Long id;
+   @Version
+   @Column(name = "version")
+   private int version;
 
-	@Column(name = "idcategoria", nullable = false)
-	private int IdCategoria;
+   @Column(nullable = false)
+   private String descricao;
 
-	@Column(name = "descricao")
-	private String Descricao;
+   public Long getId()
+   {
+      return this.id;
+   }
 
-	public Long getId() {
-		return this.id;
-	}
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Produto> produtos = new HashSet<Produto>();
 
 	public void setId(final Long id) {
 		this.id = id;
@@ -46,53 +58,61 @@ public class Categoria implements Serializable {
 		this.version = version;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Categoria)) {
-			return false;
-		}
-		Categoria other = (Categoria) obj;
-		if (id != null) {
-			if (!id.equals(other.id)) {
-				return false;
-			}
-		}
-		return true;
-	}
+   @Override
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+      {
+         return true;
+      }
+      if (!(obj instanceof Categoria))
+      {
+         return false;
+      }
+      Categoria other = (Categoria) obj;
+      if (id != null)
+      {
+         if (!id.equals(other.id))
+         {
+            return false;
+         }
+      }
+      return true;
+   }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+   @Override
+   public int hashCode()
+   {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id == null) ? 0 : id.hashCode());
+      return result;
+   }
 
-	public int getIdCategoria() {
-		return IdCategoria;
-	}
+   public String getDescricao()
+   {
+      return descricao;
+   }
 
-	public void setIdCategoria(int IdCategoria) {
-		this.IdCategoria = IdCategoria;
-	}
+   public void setDescricao(String descricao)
+   {
+      this.descricao = descricao;
+   }
 
-	public String getDescricao() {
-		return Descricao;
-	}
+   public Set<Produto> getProdutos() {
+	return produtos;
+}
 
-	public void setDescricao(String Descricao) {
-		this.Descricao = Descricao;
-	}
+public void setProdutos(Set<Produto> produtos) {
+	this.produtos = produtos;
+}
 
-	@Override
-	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		result += "IdCategoria: " + IdCategoria;
-		if (Descricao != null && !Descricao.trim().isEmpty())
-			result += ", Descricao: " + Descricao;
-		return result;
-	}
+@Override
+   public String toString()
+   {
+      String result = getClass().getSimpleName() + " ";
+      if (descricao != null && !descricao.trim().isEmpty())
+         result += "descricao: " + descricao;
+      return result;
+   }
 }
